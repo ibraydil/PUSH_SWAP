@@ -81,9 +81,78 @@ void ft_push(t_stack *src, t_stack *dst)
 	dst -> size++;
 } 
 
-
 /*moves one element from the top 
 of one stack to the top of the other.*/
 /*
 before:   src: 7 2 9        dst: 4 5
 after:    src: 2 9          dst: 7 4 5*/
+
+void ft_sa(t_ps *p)
+{
+	ft_swap(&p -> a);
+	ft_putendl_fd("sa", 1);	
+}
+
+void ft_sb(t_ps *p)
+{
+	ft_swap(&p -> b);
+	ft_putendl_fd("sb", 1);	
+}
+
+void ft_ss(t_ps *p)
+{
+	ft_swap(&p -> a);
+	ft_swap(&p -> b);
+	ft_putendl_fd("ss", 1);	
+	
+}
+
+void ft_pa(t_ps *p)
+{
+	ft_push(&p -> b, &p -> a);
+	ft_putendl_fd("pa", 1);	
+}
+
+void ft_pb(t_ps *p)
+{
+	ft_push(&p -> a, &p -> b);
+	ft_putendl_fd("pb", 1);	
+}
+
+void ft_ra(t_ps *p)
+{
+	ft_rotate(&p -> a);
+	ft_putendl_fd("ra", 1);	
+}
+
+void ft_rb(t_ps *p)
+{
+	ft_rotate(&p -> b);
+	ft_putendl_fd("rb", 1);	
+}
+
+void ft_rr(t_ps *p)
+{
+	ft_rotate(&p -> a);
+	ft_rotate(&p -> b);
+	ft_putendl_fd("rr", 1);	
+}
+
+void ft_rra(t_ps *p)
+{
+	ft_revrotate(&p -> a);
+	ft_putendl_fd("rra", 1);	
+}
+
+void ft_rrb(t_ps *p)
+{
+	ft_revrotate(&p -> b);
+	ft_putendl_fd("rrb", 1);	
+}
+
+void ft_rrr(t_ps *p)
+{
+	ft_revrotate(&p -> a);
+	ft_revrotate(&p -> b);
+	ft_putendl_fd("rrr", 1);	
+}
