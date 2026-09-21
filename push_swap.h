@@ -25,3 +25,14 @@ typedef struct	s_stack
 	int	size; /*how many numbers are right now*/
 	int	cap; /*how many it can hold to check the overflow*/
 }   t_stack;
+
+typedef struct s_ps
+{
+	t_stack	a;
+	t_stack	b;
+	int		counts[11]; /*how often operation was used*/
+	int		total; /*total amount of operations*/
+	int		bench;
+}	t_ps;
+
+#endif
