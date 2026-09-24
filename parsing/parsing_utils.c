@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
+
 int	is_valid_number(const char *str)
 {
 	int	i;
@@ -25,7 +27,7 @@ int	is_valid_number(const char *str)
 	}
 	while (str[i] != '\0')
 	{
-		if (!isdigit((unsigned char)str[i]))
+		if (!ft_isdigit((unsigned char)str[i]))
 			return (0);
 		i++;
 	}
@@ -96,10 +98,10 @@ int	*parse_numbers(char **argv, int amount)
 	numbers = malloc(sizeof(int) * amount);
 	if (!numbers)
 		return (NULL);
-	i = 1;
-	while (i <= amount)
+	i = 0;
+	while (i < amount)
 	{
-		if (!parse_number(argv[i], &numbers[i - 1]))
+		if (!parse_number(argv[i], &numbers[i]))
 		{
 			free(numbers);
 			return (NULL);
