@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dibrayev <dibrayev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 15:13:54 by dibrayev          #+#    #+#             */
-/*   Updated: 2026/09/19 17:14:30 by dibrayev         ###   ########.fr       */
+/*   Updated: 2026/09/28 09:59:48 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void ft_rotate(t_stack *stack)
 }
 /*Shifts all elements up by one; the top element becomes the bottom.*/
 
-void ft_mirotate(t_stack *stack)
+void ft_revrotate(t_stack *stack)
 {
 	int i;
 	int tmp;
