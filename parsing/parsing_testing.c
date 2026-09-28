@@ -17,20 +17,30 @@ int	main(int argc, char **argv)
 	char	**args;
 	int		amount;
 	int		*numbers;
-	t_stack	*stack_a;
+	int		i;
 
 	args = prepare_args(argc, argv);
 	if (args == NULL)
+	{
+		ft_putstr_fd("Parsing error\n", 2);
 		return (1);
+	}
 	amount = count_args(args);
 	numbers = parse_numbers(args, amount);
-	free_args(args, argc);
 	if (numbers == NULL)
+	{
+		free_args(args);
+		ft_putstr_fd("Parsing error\n", 2);
 		return (1);
-	stack_a = create_stack(numbers, amount);
+	}
+	i = 0;
+	while (i < amount)
+	{
+		ft_putnbr_fd(numbers[i], 1);
+		ft_putchar_fd('\n', 1);
+		i++;
+	}
 	free(numbers);
-	if (stack_a == NULL)
-		return (1);
-	free_stack(stack_a);
+	free_args(args);
 	return (0);
 }

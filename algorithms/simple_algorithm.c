@@ -15,59 +15,52 @@
 int	find_min(t_stack *stack)
 {
 	int	min;
+	int	i;
 
-	min = stack->value;
-	while (stack != NULL)
+	min = stack->data[0];
+	i = 1;
+	while (i < stack->size)
 	{
-		if (stack->value < min)
-			min = stack->value;
-		stack = stack->next;
+		if (stack->data[i] < min)
+			min = stack->data[i];
+		i++;
 	}
 	return (min);
 }
 
 int	find_position(t_stack *stack, int value)
 {
-	int	position;
+	int	i;
 
-	position = 0;
-	while (stack != NULL)
+	i = 0;
+	while (i < stack->size)
 	{
-		if (stack->value == value)
-			return (position);
-		stack = stack->next;
-		position++;
+		if (stack->data[i] == value)
+			return (i);
+		i++;
 	}
 	return (-1);
 }
 
 int	stack_size(t_stack *stack)
 {
-	int	size;
-
-	size = 0;
-	while (stack != NULL)
-	{
-		size++;
-		stack = stack->next;
-	}
-	return (size);
+	return (stack->size);
 }
 
-void	move_min_to_top(t_stack **stack)
+void	move_min_to_top(t_ps *p)
 {
 	int	min;
 	int	position;
 	int	size;
 
-	min = find_min(*stack);
-	position = find_position(*stack, min);
-	size = stack_size(*stack);
+	min = find_min(&p->a);
+	position = find_position(&p->a, min);
+	size = stack_size(&p->a);
 	if (position <= size / 2)
 	{
 		while (position > 0)
 		{
-			ra(stack);
+			ft_ra(p);
 			position--;
 		}
 	}
@@ -75,21 +68,19 @@ void	move_min_to_top(t_stack **stack)
 	{
 		while (position < size)
 		{
-			rra(stack);
+			ft_rra(p);
 			position++;
 		}
 	}
 }
 
-void	selection_sort(t_stacks *stacks)
+void	selection_sort(t_ps *p)
 {
-	while (stacks->a != NULL)
+	while (p->a.size > 0)
 	{
-		move_min_to_top(&stacks->a);
-		pb(stacks);
+		move_min_to_top(p);
+		ft_pb(p);
 	}
-	while (stacks->b != NULL)
-		pa(stacks);
+	while (p->b.size > 0)
+		ft_pa(p);
 }
-
-

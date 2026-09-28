@@ -12,28 +12,6 @@
 
 #include "push_swap.h"
 
-void	assign_ranks(t_stack *stack)
-{
-	t_stack	*current;
-	t_stack	*compare;
-	int		rank;
-
-	current = stack;
-	while (current != NULL)
-	{
-		rank = 0;
-		compare = stack;
-		while (compare != NULL)
-		{
-			if (compare->value < current->value)
-				rank++;
-			compare = compare->next;
-		}
-		current->rank = rank;
-		current = current->next;
-	}
-}
-
 int	calculate_chunk_size(int size)
 {
 	int	chunk;
@@ -44,48 +22,73 @@ int	calculate_chunk_size(int size)
 	return (chunk);
 }
 
-int	find_chunk_position(t_stack *stack, int start, int end)
+int	find_chunk_position(t_stack *stack, int *sorted, int start, int end)
 {
-	int	position;
+	int	i;
 
-	position = 0;
-	while (stack != NULL)
+	i = 0;
+	while (i < stack->size)
 	{
-		if (stack->rank >= start && stack->rank <= end)
-			return (position);
-		stack = stack->next;
-		position++;
+		if (stack->data[i] >= sorted[start]
+			&& stack->data[i] <= sorted[end])
+			return (i);
+		i++;
 	}
 	return (-1);
 }
 
-void	move_position_to_top(t_stack **stack, int position)
+int	find_max_position(t_stack *stack)
 {
-	while (position > 0)
+	int	i;
+	int	max_position;
+
+	if (stack->size == 0)
+		return (-1);
+	i = 1;
+	max_position = 0;
+	while (i < stack->size)
 	{
-		ra(stack);
-		position--;
+		if (stack->data[i] > stack->data[max_position])
+			max_position = i;
+		i++;
+	}
+	return (max_position);
+}
+
+void	sort_array(int *array, int size)
+{
+	int	i;
+	int	tmp;
+
+	i = 0;
+	while (i < size - 1)
+	{
+		if (array[i] > array[i + 1])
+		{
+			tmp = array[i];
+			array[i] = array[i + 1];
+			array[i + 1] = tmp;
+			i = 0;
+		}
+		else
+			i++;
 	}
 }
 
-int	find_max_rank_position(t_stack *stack)
+int	*sorted_copy(t_stack *stack)
 {
-	int	max_rank;
-	int	position;
-	int	max_position;
+	int	*sorted;
+	int	i;
 
-	max_rank = stack->rank;
-	position = 0;
-	max_position = 0;
-	while (stack != NULL)
+	sorted = malloc(sizeof(int) * stack->size);
+	if (sorted == NULL)
+		return (NULL);
+	i = 0;
+	while (i < stack->size)
 	{
-		if (stack->rank > max_rank)
-		{
-			max_rank = stack->rank;
-			max_position = position;
-		}
-		stack = stack->next;
-		position++;
+		sorted[i] = stack->data[i];
+		i++;
 	}
-	return (max_position);
+	sort_array(sorted, stack->size);
+	return (sorted);
 }

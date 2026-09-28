@@ -12,58 +12,75 @@
 
 #include "push_swap.h"
 
-void	move_b_position_to_top(t_stack **stack, int position)
+void	push_chunks(t_ps *p, int *sorted, int chunk_size)
 {
-	while (position > 0)
-	{
-		rb(stack);
-		position--;
-	}
-}
-
-void	push_chunks(t_stacks *stacks)
-{
-	int	size;
-	int	chunk_size;
 	int	start;
 	int	end;
 	int	position;
+	int	moves;
 
-	size = stack_size(stacks->a);
-	chunk_size = calculate_chunk_size(size);
 	start = 0;
-	end = chunk_size - 1;
-	while (start < size)
+	while (start < p->a.size)
 	{
-		if (end >= size)
-			end = size - 1;
-		position = find_chunk_position(stacks->a, start, end);
+		end = start + chunk_size - 1;
+		if (end >= p->a.size)
+			end = p->a.size - 1;
+		position = find_chunk_position(&p->a, sorted, start, end);
 		while (position != -1)
 		{
-			move_position_to_top(&stacks->a, position);
-			pb(stacks);
-			position = find_chunk_position(stacks->a, start, end);
+			if (position <= p->a.size / 2)
+			{
+				moves = position;
+				while (moves-- > 0)
+					ft_ra(p);
+			}
+			else
+			{
+				moves = p->a.size - position;
+				while (moves-- > 0)
+					ft_rra(p);
+			}
+			ft_pb(p);
+			position = find_chunk_position(&p->a, sorted, start, end);
 		}
 		start += chunk_size;
-		end += chunk_size;
 	}
 }
 
-void	push_back_sorted(t_stacks *stacks)
+void	push_back_sorted(t_ps *p)
 {
 	int	position;
+	int	moves;
 
-	while (stacks->b != NULL)
+	while (p->b.size > 0)
 	{
-		position = find_max_rank_position(stacks->b);
-		move_b_position_to_top(&stacks->b, position);
-		pa(stacks);
+		position = find_max_position(&p->b);
+		if (position <= p->b.size / 2)
+		{
+			moves = position;
+			while (moves-- > 0)
+				ft_rb(p);
+		}
+		else
+		{
+			moves = p->b.size - position;
+			while (moves-- > 0)
+				ft_rrb(p);
+		}
+		ft_pa(p);
 	}
 }
 
-void	medium_sort(t_stacks *stacks)
+void	medium_sort(t_ps *p)
 {
-	assign_ranks(stacks->a);
-	push_chunks(stacks);
-	push_back_sorted(stacks);
+	int	*sorted;
+	int	chunk_size;
+
+	sorted = sorted_copy(&p->a);
+	if (sorted == NULL)
+		return ;
+	chunk_size = calculate_chunk_size(p->a.size);
+	push_chunks(p, sorted, chunk_size);
+	push_back_sorted(p);
+	free(sorted);
 }

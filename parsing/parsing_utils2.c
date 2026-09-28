@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
 int	fill_words(char **words, char *str, char *charset)
 {
 	int	i;
@@ -63,20 +61,34 @@ int	count_args(char **args)
 	return (i);
 }
 
-void	free_args(char **args, int argc)
+void	free_args(char **args)
 {
 	int	i;
 
 	if (args == NULL)
 		return ;
-	if (argc == 2)
+	i = 0;
+	while (args[i] != NULL)
 	{
-		i = 0;
-		while (args[i] != NULL)
-		{
-			free(args[i]);
-			i++;
-		}
+		free(args[i]);
+		i++;
 	}
 	free(args);
+}
+
+int	add_arg_words(char **args, char *str, int index)
+{
+	char	**split;
+	int		i;
+
+	split = split_args(str, " \t\n\v\f\r");
+	if (split == NULL)
+		return (-1);
+	i = 0;
+	while (split[i] != NULL)
+	{
+		args[index++] = split[i++];
+	}
+	free(split);
+	return (index);
 }

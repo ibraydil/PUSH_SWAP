@@ -12,70 +12,43 @@
 
 #include "push_swap.h"
 
-t_stack	*new_node(int value)
+int	init_stack(t_stack *stack, int *numbers, int amount)
 {
-	t_stack	*node;
-
-	node = malloc(sizeof(*node));
-	if (node == NULL)
-		return (NULL);
-	node->value = value;
-	node->next = NULL;
-	return (node);
-}
-
-void	add_back(t_stack **stack, t_stack *new)
-{
-	t_stack	*last;
-
-	if (stack == NULL || new == NULL)
-		return ;
-	if (*stack == NULL)
+	stack->data = malloc(sizeof(int) * amount);
+	if (stack->data == NULL)
+		return (0);
+	stack->size = amount;
+	stack->cap = amount;
+	while (amount > 0)
 	{
-		*stack = new;
-		return ;
+		amount--;
+		stack->data[amount] = numbers[amount];
 	}
-	last = *stack;
-	while (last->next != NULL)
-		last = last->next;
-	last->next = new;
-}
-
-t_stack	*create_stack(int *numbers, int amount)
-{
-	t_stack	*stack;
-	t_stack	*node;
-	int		i;
-
-	stack = NULL;
-	i = 0;
-	while (i < amount)
-	{
-		node = new_node(numbers[i]);
-		if (node == NULL)
-		{
-			while (stack != NULL)
-			{
-				node = stack->next;
-				free(stack);
-				stack = node;
-			}
-			return (NULL);
-		}
-		add_back(&stack, node);
-		i++;
-	}
-	return (stack);
+	return (1);
 }
 
 void	free_stack(t_stack *stack)
 {
-	t_stack	*next;
+	free(stack->data);
+	stack->data = NULL;
+	stack->size = 0;
+	stack->cap = 0;
+}
 
-	while (stack != NULL)
-	{
-		next = stack->next;
-		free(stack);
-		stack = next;
-	}
+void	init_ps(t_ps *p)
+{
+	p->a.data = NULL;
+	p->a.size = 0;
+	p->a.cap = 0;
+	p->b.data = NULL;
+	p->b.size = 0;
+	p->b.cap = 0;
+	p->total = 0;
+	p->bench = 0;
+}
+
+void	free_ps(t_ps *p)
+{
+	free_stack(&p->a);
+	free_stack(&p->b);
 }

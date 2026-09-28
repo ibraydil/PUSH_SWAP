@@ -86,20 +86,25 @@ char	**prepare_args(int argc, char **argv)
 {
 	char	**args;
 	int		i;
+	int		j;
 
 	if (argc < 2)
 		return (NULL);
-	if (argc == 2)
-		return (split_args(argv[1], " \t\n\v\f\r"));
-	args = malloc(sizeof(char *) * argc);
+	args = malloc(sizeof(char *) * (count_numbers(argv) + 1));
 	if (args == NULL)
 		return (NULL);
 	i = 1;
+	j = 0;
 	while (i < argc)
 	{
-		args[i - 1] = argv[i];
+		if (!is_option(argv[i]))
+		{
+			j = add_arg_words(args, argv[i], j);
+			if (j == -1)
+				return (free_args(args), NULL);
+		}
 		i++;
 	}
-	args[argc - 1] = NULL;
+	args[j] = NULL;
 	return (args);
 }
