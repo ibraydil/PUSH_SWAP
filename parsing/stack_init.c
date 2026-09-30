@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pokuzmic <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/22 16:17:32 by pokuzmic          #+#    #+#             */
-/*   Updated: 2026/09/22 19:32:38 by pokuzmic         ###   ########.fr       */
+/*   Updated: 2026/09/30 12:34:19 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	free_stack(t_stack *stack)
 
 void	init_ps(t_ps *p)
 {
+	int	i;
+	
 	p->a.data = NULL;
 	p->a.size = 0;
 	p->a.cap = 0;
@@ -45,6 +47,12 @@ void	init_ps(t_ps *p)
 	p->b.cap = 0;
 	p->total = 0;
 	p->bench = 0;
+	i = 0;
+	while (i < 11)
+	{
+		p->counts[i] = 0;
+		i++;
+	}
 }
 
 void	free_ps(t_ps *p)
