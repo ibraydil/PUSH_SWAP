@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing _split.c                                   :+:      :+:    :+:   */
+/*   parsing_split.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pokuzmic <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/22 15:17:32 by pokuzmic          #+#    #+#             */
-/*   Updated: 2026/09/22 16:32:38 by pokuzmic         ###   ########.fr       */
+/*   Updated: 2026/09/30 12:07:27 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,34 @@ char	*word_split(char *str, char *sep)
 	return (word);
 }
 
+int	fill_words(char **words, char *str, char *charset)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (str[i])
+	{
+		if (!define_separator(str[i], charset))
+		{
+			words[j] = word_split(&str[i], charset);
+			if (words[j] == NULL)
+			{
+				free_words(words, j);
+				return (0);
+			}
+			j++;
+			while (str[i] && !define_separator(str[i], charset))
+				i++;
+		}
+		else
+			i++;
+	}
+	words[j] = NULL;
+	return (1);
+}
+
 char	**split_args(char *str, char *charset)
 {
 	char	**words;
@@ -80,31 +108,4 @@ char	**split_args(char *str, char *charset)
 	if (!fill_words(words, str, charset))
 		return (NULL);
 	return (words);
-}
-
-char	**prepare_args(int argc, char **argv)
-{
-	char	**args;
-	int		i;
-	int		j;
-
-	if (argc < 2)
-		return (NULL);
-	args = malloc(sizeof(char *) * (count_numbers(argv) + 1));
-	if (args == NULL)
-		return (NULL);
-	i = 1;
-	j = 0;
-	while (i < argc)
-	{
-		if (!is_option(argv[i]))
-		{
-			j = add_arg_words(args, argv[i], j);
-			if (j == -1)
-				return (free_args(args), NULL);
-		}
-		i++;
-	}
-	args[j] = NULL;
-	return (args);
 }
