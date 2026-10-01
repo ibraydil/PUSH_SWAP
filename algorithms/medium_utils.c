@@ -3,14 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   medium_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pokuzmic <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 18:40:53 by pokuzmic          #+#    #+#             */
-/*   Updated: 2026/09/25 18:40:55 by pokuzmic         ###   ########.fr       */
+/*   Updated: 2026/09/30 13:43:54 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	sort_array(int *array, int size)
+{
+	int	i;
+	int	tmp;
+
+	i = 0;
+	while (i < size - 1)
+	{
+		if (array[i] > array[i + 1])
+		{
+			tmp = array[i];
+			array[i] = array[i + 1];
+			array[i + 1] = tmp;
+			i = 0;
+		}
+		else
+			i++;
+	}
+}
+
+int	*sorted_copy(t_stack *stack)
+{
+	int	*sorted;
+	int	i;
+
+	sorted = malloc(sizeof(int) * stack->size);
+	if (sorted == NULL)
+		return (NULL);
+	i = 0;
+	while (i < stack->size)
+	{
+		sorted[i] = stack->data[i];
+		i++;
+	}
+	sort_array(sorted, stack->size);
+	return (sorted);
+}
 
 int	calculate_chunk_size(int size)
 {
@@ -53,42 +91,4 @@ int	find_max_position(t_stack *stack)
 		i++;
 	}
 	return (max_position);
-}
-
-void	sort_array(int *array, int size)
-{
-	int	i;
-	int	tmp;
-
-	i = 0;
-	while (i < size - 1)
-	{
-		if (array[i] > array[i + 1])
-		{
-			tmp = array[i];
-			array[i] = array[i + 1];
-			array[i + 1] = tmp;
-			i = 0;
-		}
-		else
-			i++;
-	}
-}
-
-int	*sorted_copy(t_stack *stack)
-{
-	int	*sorted;
-	int	i;
-
-	sorted = malloc(sizeof(int) * stack->size);
-	if (sorted == NULL)
-		return (NULL);
-	i = 0;
-	while (i < stack->size)
-	{
-		sorted[i] = stack->data[i];
-		i++;
-	}
-	sort_array(sorted, stack->size);
-	return (sorted);
 }
