@@ -77,6 +77,13 @@ void ft_push(t_stack *src, t_stack *dst)
 		dst -> data[i] = dst -> data[i - 1];
 		i--;
 	}
+	dst->data[0] = tmp;
+	i = 0;
+	while (i < src->size - 1)
+	{
+		src->data[i] = src->data[i + 1];
+        i++;
+	}
 	src -> size--;
 	dst -> size++;
 } 
