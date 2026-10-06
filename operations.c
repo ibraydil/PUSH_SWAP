@@ -16,11 +16,11 @@ void ft_swap(t_stack *stack)
 {
 	int tmp;
 	
-	if (stack -> size < 2)
+	if (stack->size < 2)
 		return ;
-	tmp = stack -> data[0]; /*saved the first element in tmp*/
-	stack -> data[0] = stack -> data[1]; /*added the second element as the firts*/
-	stack -> data[1] = tmp; /*added the previous first as the second*/
+	tmp = stack->data[0]; /*saved the first element in tmp*/
+	stack->data[0] = stack->data[1]; /*added the second element as the firts*/
+	stack->data[1] = tmp; /*added the previous first as the second*/
 }
 
 void ft_rotate(t_stack *stack)
