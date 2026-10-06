@@ -68,13 +68,13 @@ void ft_push(t_stack *src, t_stack *dst)
 	int tmp;
 	int i;
 
-	if (src -> size == 0)
+	if (src->size == 0)
 		return ;
-	tmp = src -> data[0];
-	i = dst -> size;
+	tmp = src->data[0];
+	i = dst->size;
 	while (i > 0)
 	{
-		dst -> data[i] = dst -> data[i - 1];
+		dst->data[i] = dst->data[i - 1];
 		i--;
 	}
 	dst->data[0] = tmp;
@@ -84,8 +84,8 @@ void ft_push(t_stack *src, t_stack *dst)
 		src->data[i] = src->data[i + 1];
         i++;
 	}
-	src -> size--;
-	dst -> size++;
+	src->size--;
+	dst->size++;
 } 
 
 /*moves one element from the top 
