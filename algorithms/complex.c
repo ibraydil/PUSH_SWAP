@@ -62,7 +62,7 @@ void	radix_sort(t_ps *ps)
 				ft_pb(ps);
 		}
 		while (ps->b.size > 0)
-			pa(ps);
+			ft_pa(ps);
 	}
 }
 
