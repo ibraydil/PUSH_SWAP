@@ -68,7 +68,7 @@ void ft_push(t_stack *src, t_stack *dst)
 	int tmp;
 	int i;
 
-	if (src->size == 0)
+	if (src->size == 0 || dst->size >= dst->cap)
 		return ;
 	tmp = src->data[0];
 	i = dst->size;
