@@ -114,60 +114,105 @@ void	ft_sb(t_ps *p)
 	ft_putendl_fd("sb", 1);
 }
 
-void ft_ss(t_ps *p)
+void	ft_ss(t_ps *p)
 {
-	ft_swap(&p -> a);
-	ft_swap(&p -> b);
-	ft_putendl_fd("ss", 1);	
-	
+	if (p->a.size < 2 && p->b.size < 2)
+		return ;
+	if (p->a.size >= 2)
+		ft_swap(&p->a);
+	if (p->b.size >= 2)
+		ft_swap(&p->b);
+	p->counts[2]++;
+	p->total++;
+	ft_putendl_fd("ss", 1);
 }
 
-void ft_pa(t_ps *p)
+void	ft_pa(t_ps *p)
 {
-	ft_push(&p -> b, &p -> a);
-	ft_putendl_fd("pa", 1);	
+	if (p->b.size == 0)
+		return ;
+	if (p->a.size >= p->a.cap)
+		return ;
+	ft_push(&p->b, &p->a);
+	p->counts[3]++;
+	p->total++;
+	ft_putendl_fd("pa", 1);
 }
 
-void ft_pb(t_ps *p)
+void	ft_pb(t_ps *p)
 {
-	ft_push(&p -> a, &p -> b);
-	ft_putendl_fd("pb", 1);	
+	if (p->a.size == 0)
+		return ;
+	if (p->b.size >= p->b.cap)
+		return ;
+	ft_push(&p->a, &p->b);
+	p->counts[4]++;
+	p->total++;
+	ft_putendl_fd("pb", 1);
 }
 
-void ft_ra(t_ps *p)
+void	ft_ra(t_ps *p)
 {
-	ft_rotate(&p -> a);
-	ft_putendl_fd("ra", 1);	
+	if (p->a.size < 2)
+		return ;
+	ft_rotate(&p->a);
+	p->counts[5]++;
+	p->total++;
+	ft_putendl_fd("ra", 1);
 }
 
-void ft_rb(t_ps *p)
+void	ft_rb(t_ps *p)
 {
-	ft_rotate(&p -> b);
-	ft_putendl_fd("rb", 1);	
+	if (p->b.size < 2)
+		return ;
+	ft_rotate(&p->b);
+	p->counts[6]++;
+	p->total++;
+	ft_putendl_fd("rb", 1);
 }
 
-void ft_rr(t_ps *p)
+void	ft_rr(t_ps *p)
 {
-	ft_rotate(&p -> a);
-	ft_rotate(&p -> b);
-	ft_putendl_fd("rr", 1);	
+	if (p->a.size < 2 && p->b.size < 2)
+		return ;
+	if (p->a.size >= 2)
+		ft_rotate(&p->a);
+	if (p->b.size >= 2)
+		ft_rotate(&p->b);
+	p->counts[7]++;
+	p->total++;
+	ft_putendl_fd("rr", 1);
 }
 
-void ft_rra(t_ps *p)
+void	ft_rra(t_ps *p)
 {
-	ft_revrotate(&p -> a);
-	ft_putendl_fd("rra", 1);	
+	if (p->a.size < 2)
+		return ;
+	ft_revrotate(&p->a);
+	p->counts[8]++;
+	p->total++;
+	ft_putendl_fd("rra", 1);
 }
 
-void ft_rrb(t_ps *p)
+void	ft_rrb(t_ps *p)
 {
-	ft_revrotate(&p -> b);
-	ft_putendl_fd("rrb", 1);	
+	if (p->b.size < 2)
+		return ;
+	ft_revrotate(&p->b);
+	p->counts[9]++;
+	p->total++;
+	ft_putendl_fd("rrb", 1);
 }
 
-void ft_rrr(t_ps *p)
+void	ft_rrr(t_ps *p)
 {
-	ft_revrotate(&p -> a);
-	ft_revrotate(&p -> b);
-	ft_putendl_fd("rrr", 1);	
+	if (p->a.size < 2 && p->b.size < 2)
+		return ;
+	if (p->a.size >= 2)
+		ft_revrotate(&p->a);
+	if (p->b.size >= 2)
+		ft_revrotate(&p->b);
+	p->counts[10]++;
+	p->total++;
+	ft_putendl_fd("rrr", 1);
 }
