@@ -30,16 +30,16 @@ void ft_rotate(t_stack *stack)
 	int n;
 
 	i = 0;
-	if (stack -> size < 2)
+	if (stack->size < 2)
 		return ;
-	tmp = stack -> data[0];
-	n = stack -> size;
+	tmp = stack->data[0];
+	n = stack->size;
 	while (i < n - 1)
 	{
-		stack -> data[i] = stack -> data[i + 1];
+		stack->data[i] = stack->data[i + 1];
 		i++;
 	}
-	stack -> data[n - 1] = tmp;
+	stack->data[n - 1] = tmp;
 }
 /*Shifts all elements up by one; the top element becomes the bottom.*/
 
