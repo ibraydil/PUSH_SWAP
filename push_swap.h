@@ -42,39 +42,32 @@ typedef enum e_strategy
 	ADAPTIVE
 }	t_strategy;
 
-/* parsing_utils.c */
+/* parsing/parsing_utils.c */
 int			is_valid_number(const char *str);
 long		ft_atol(const char *str);
 int			duplicate_check(int *numbers, int amount);
 int			parse_number(char *str, int *number);
 int			*parse_numbers(char **argv, int amount);
 
-/* parsing_utils2.c */
-int			fill_words(char **words, char *str, char *charset);
+/* parsing/parsing_args.c */
 void		free_words(char **words, int count);
 int			count_args(char **args);
 void		free_args(char **args);
 int			add_arg_words(char **args, char *str, int index);
+char		**prepare_args(int argc, char **argv);
 
-/* parsing_split.c */
+/* parsing/parsing_split.c */
 int			define_separator(char c, char *sep);
 int			count_words(char *str, char *sep);
 char		*word_split(char *str, char *sep);
+int			fill_words(char **words, char *str, char *charset);
 char		**split_args(char *str, char *charset);
-char		**prepare_args(int argc, char **argv);
 
-/* stack_init.c */
+/* parsing/stack_init.c */
 int			init_stack(t_stack *stack, int *numbers, int amount);
 void		free_stack(t_stack *stack);
-void		init_ps(t_ps *p);
+int			init_ps(t_ps *p, int amount);
 void		free_ps(t_ps *p);
-
-/* simple_utils.c */
-int			find_min(t_stack *stack);
-int			find_position(t_stack *stack, int value);
-int			stack_size(t_stack *stack);
-void		move_min_to_top(t_ps *p);
-void		selection_sort(t_ps *p);
 
 /* operations.c */
 void		ft_swap(t_stack *stack);
@@ -93,18 +86,31 @@ void		ft_rra(t_ps *p);
 void		ft_rrb(t_ps *p);
 void		ft_rrr(t_ps *p);
 
-/* medium_utils.c */
+/* algorithms/simple_algorithm.c */
+int			find_min(t_stack *stack);
+int			find_position(t_stack *stack, int value);
+int			stack_size(t_stack *stack);
+void		move_min_to_top(t_ps *p);
+void		selection_sort(t_ps *p);
+
+/* algorithms/medium_utils.c */
+void		sort_array(int *array, int size);
+int			*sorted_copy(t_stack *stack);
 int			calculate_chunk_size(int size);
 int			find_chunk_position(t_stack *stack, int *sorted, int start,
 				int end);
 int			find_max_position(t_stack *stack);
-void		sort_array(int *array, int size);
-int			*sorted_copy(t_stack *stack);
 
-/* medium_sort.c */
+/* algorithms/medium_sort.c */
 void		push_chunks(t_ps *p, int *sorted, int chunk_size);
 void		push_back_sorted(t_ps *p);
 void		medium_sort(t_ps *p);
+
+/* algorithms/complex.c */
+void		radix_sort(t_ps *ps);
+
+/* disorder.c */
+double		disorder(t_stack *a);
 
 /* options.c */
 t_strategy	get_strategy(int argc, char **argv);
