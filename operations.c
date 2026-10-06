@@ -49,17 +49,17 @@ void ft_revrotate(t_stack *stack)
 	int tmp;
 	int n;
 
-	if (stack -> size < 2)
+	if (stack->size < 2)
 		return ;
-	n = stack -> size;
+	n = stack->size;
 	i = n - 1;
-	tmp = stack -> data[n - 1];
+	tmp = stack->data[n - 1];
 	while (i > 0)
 	{
-		stack -> data[i] = stack -> data[i - 1];
+		stack->data[i] = stack->data[i - 1];
 		i--;
 	}
-	stack -> data[0] = tmp;	
+	stack->data[0] = tmp;	
 }
 /*1 2 3 4 5 becomes 5 1 2 3 4*/
 
