@@ -94,16 +94,24 @@ of one stack to the top of the other.*/
 before:   src: 7 2 9        dst: 4 5
 after:    src: 2 9          dst: 7 4 5*/
 
-void ft_sa(t_ps *p)
+void	ft_sa(t_ps *p)
 {
-	ft_swap(&p -> a);
-	ft_putendl_fd("sa", 1);	
+	if (p->a.size < 2)
+		return ;
+	ft_swap(&p->a);
+	p->counts[0]++;
+	p->total++;
+	ft_putendl_fd("sa", 1);
 }
 
-void ft_sb(t_ps *p)
+void	ft_sb(t_ps *p)
 {
-	ft_swap(&p -> b);
-	ft_putendl_fd("sb", 1);	
+	if (p->b.size < 2)
+		return ;
+	ft_swap(&p->b);
+	p->counts[1]++;
+	p->total++;
+	ft_putendl_fd("sb", 1);
 }
 
 void ft_ss(t_ps *p)
