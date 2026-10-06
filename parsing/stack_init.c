@@ -35,16 +35,18 @@ void	free_stack(t_stack *stack)
 	stack->cap = 0;
 }
 
-void	init_ps(t_ps *p)
+int	init_ps(t_ps *p, int amount)
 {
 	int	i;
-	
+
 	p->a.data = NULL;
 	p->a.size = 0;
 	p->a.cap = 0;
-	p->b.data = NULL;
+	p->b.data = malloc(sizeof(int) * amount);
+	if (p->b.data == NULL)
+		return (0);
 	p->b.size = 0;
-	p->b.cap = 0;
+	p->b.cap = amount;
 	p->total = 0;
 	p->bench = 0;
 	i = 0;
@@ -53,6 +55,7 @@ void	init_ps(t_ps *p)
 		p->counts[i] = 0;
 		i++;
 	}
+	return (1);
 }
 
 void	free_ps(t_ps *p)
