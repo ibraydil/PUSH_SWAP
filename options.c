@@ -12,6 +12,11 @@
 
 #include "push_swap.h"
 
+static int	is_same(char *arg, char *opt)
+{
+	return (ft_strncmp(arg, opt, ft_strlen(opt) + 1) == 0);
+}
+
 t_strategy	get_strategy(int argc, char **argv)
 {
 	int	i;
@@ -19,13 +24,13 @@ t_strategy	get_strategy(int argc, char **argv)
 	i = 1;
 	while (i < argc)
 	{
-		if (ft_strcmp(argv[i], "--simple") == 0)
+		if (is_same(argv[i], "--simple"))
 			return (SIMPLE);
-		if (ft_strcmp(argv[i], "--medium") == 0)
+		if (is_same(argv[i], "--medium"))
 			return (MEDIUM);
-		if (ft_strcmp(argv[i], "--complex") == 0)
+		if (is_same(argv[i], "--complex"))
 			return (COMPLEX);
-		if (ft_strcmp(argv[i], "--adaptive") == 0)
+		if (is_same(argv[i], "--adaptive"))
 			return (ADAPTIVE);
 		i++;
 	}
@@ -39,7 +44,7 @@ int	is_bench(int argc, char **argv)
 	i = 1;
 	while (i < argc)
 	{
-		if (ft_strcmp(argv[i], "--bench") == 0)
+		if (is_same(argv[i], "--bench"))
 			return (1);
 		i++;
 	}
@@ -48,15 +53,15 @@ int	is_bench(int argc, char **argv)
 
 int	is_option(char *arg)
 {
-	if (ft_strcmp(arg, "--simple") == 0)
+	if (is_same(arg, "--simple"))
 		return (1);
-	if (ft_strcmp(arg, "--medium") == 0)
+	if (is_same(arg, "--medium"))
 		return (1);
-	if (ft_strcmp(arg, "--complex") == 0)
+	if (is_same(arg, "--complex"))
 		return (1);
-	if (ft_strcmp(arg, "--adaptive") == 0)
+	if (is_same(arg, "--adaptive"))
 		return (1);
-	if (ft_strcmp(arg, "--bench") == 0)
+	if (is_same(arg, "--bench"))
 		return (1);
 	return (0);
 }
