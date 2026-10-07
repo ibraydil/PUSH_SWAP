@@ -130,4 +130,3 @@ int			count_numbers(char **argv);
 void		print_benchmark(t_ps *p, t_strategy strategy, double disorder);
 
 #endif
-
