@@ -20,18 +20,18 @@ LIBFT		= $(LIBFT_DIR)/libft.a
 
 INCLUDES	= -I. -I$(LIBFT_DIR)
 
-# Entry point: replace with the real main file once it exists
-MAIN		= parsing/parsing_testing.c
-
 SRCS		= $(MAIN) \
-			  operations.c \
-			  options.c \
-			  benchmark.c \
-			  disorder.c \
+			  operations/swap.c \
+			  operations/push.c \
+			  operations/rotate.c \
+			  operations/reverse_rotate.c \
+			  flags/options.c \
+			  flags/benchmark.c \
 			  parsing/parsing_utils.c \
 			  parsing/parsing_args.c \
 			  parsing/parsing_split.c \
 			  parsing/stack_init.c \
+			  algorithms/disorder.c \
 			  algorithms/simple_algorithm.c \
 			  algorithms/medium_utils.c \
 			  algorithms/medium_sort.c \
