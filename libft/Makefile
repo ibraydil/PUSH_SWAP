@@ -12,7 +12,7 @@
 
 NAME = libft.a
 
-CC = gcc
+CC = cc
 RM = rm -f
 CFLAGS = -Wall -Wextra -Werror -Iincludes
 
@@ -40,7 +40,7 @@ ${NAME}: ${OBJS}
 		ar rcs ${NAME} ${OBJS}
 		ranlib ${NAME}
 
-.o:.c
+%.o: %.c
 		${CC} ${CFLAGS} -c $< -o $@
 
 clean:
