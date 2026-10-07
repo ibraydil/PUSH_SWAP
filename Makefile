@@ -20,7 +20,7 @@ LIBFT		= $(LIBFT_DIR)/libft.a
 
 INCLUDES	= -I. -I$(LIBFT_DIR)
 
-MAIN		= parsing/parsing_testing.c
+MAIN		= main.c
 
 SRCS		= $(MAIN) \
 			  operations/swap.c \
@@ -39,7 +39,7 @@ SRCS		= $(MAIN) \
 			  algorithms/medium_sort.c \
 			  algorithms/medium_push_back.c \
 			  algorithms/complex.c \
-			  algorithms/adaptive.c \
+			  algorithms/adaptive.c
 
 OBJS		= $(SRCS:.c=.o)
 
@@ -65,4 +65,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-
