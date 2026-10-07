@@ -20,6 +20,8 @@ LIBFT		= $(LIBFT_DIR)/libft.a
 
 INCLUDES	= -I. -I$(LIBFT_DIR)
 
+MAIN		= parsing/parsing_testing.c
+
 SRCS		= $(MAIN) \
 			  operations/swap.c \
 			  operations/push.c \
@@ -61,4 +63,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-
