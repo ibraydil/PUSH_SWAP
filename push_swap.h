@@ -120,6 +120,10 @@ void		radix_sort(t_ps *ps);
 /* algorithms/disorder.c */
 double		disorder(t_stack *a);
 
+/* algorithms/adaptive.c */
+t_strategy	adaptive_regime(double disorder);
+void		adaptive_sort(t_ps *p, double disorder);
+
 /* flags/options.c */
 t_strategy	get_strategy(int argc, char **argv);
 int			is_bench(int argc, char **argv);
