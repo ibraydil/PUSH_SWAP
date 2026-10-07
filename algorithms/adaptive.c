@@ -6,7 +6,7 @@
 /*   By: dibrayev <dibrayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/06 14:47:41 by dibrayev          #+#    #+#             */
-/*   Updated: 2026/10/07 14:35:51 by dibrayev         ###   ########.fr       */
+/*   Updated: 2026/10/07 15:35:17 by dibrayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,15 @@ static int	is_sorted(t_stack *a)
 	return (1);
 }
 
-static void	sort_three(t_ps *p)
+static void	sort_small(t_ps *p)
 {
 	int	max_pos;
 
+	while (p->a.size > 3)
+	{
+		move_min_to_top(p);
+		ft_pb(p);
+	}
 	if (p->a.size == 3)
 	{
 		max_pos = find_max_position(&p->a);
@@ -40,12 +45,14 @@ static void	sort_three(t_ps *p)
 	}
 	if (p->a.data[0] > p->a.data[1])
 		ft_sa(p);
+	while (p->b.size > 0)
+		ft_pa(p);
 }
 
 t_strategy	adaptive_regime(double disorder)
 {
 	if (disorder < 0.2)
-		return (SInorMPLE);
+		return (SIMPLE);
 	if (disorder < 0.5)
 		return (MEDIUM);
 	return (COMPLEX);
@@ -57,9 +64,9 @@ void	adaptive_sort(t_ps *p, double disorder)
 
 	if (p->a.size < 2 || is_sorted(&p->a))
 		return ;
-	if (p->a.size <= 3)
+	if (p->a.size <= 5)
 	{
-		sort_three(p);
+		sort_small(p);
 		return ;
 	}
 	regime = adaptive_regime(disorder);
