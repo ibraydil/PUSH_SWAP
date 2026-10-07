@@ -49,33 +49,11 @@ void	push_chunks(t_ps *p, int *sorted, int chunk_size)
 		{
 			rotate_to_position(p, position);
 			ft_pb(p);
+			if (p->b.data[0] <= sorted[start + (end - start) / 2])
+				ft_rb(p);
 			position = find_chunk_position(&p->a, sorted, start, end);
 		}
 		start += chunk_size;
-	}
-}
-
-void	push_back_sorted(t_ps *p)
-{
-	int	position;
-	int	moves;
-
-	while (p->b.size > 0)
-	{
-		position = find_max_position(&p->b);
-		if (position <= p->b.size / 2)
-		{
-			moves = position;
-			while (moves-- > 0)
-				ft_rb(p);
-		}
-		else
-		{
-			moves = p->b.size - position;
-			while (moves-- > 0)
-				ft_rrb(p);
-		}
-		ft_pa(p);
 	}
 }
 
