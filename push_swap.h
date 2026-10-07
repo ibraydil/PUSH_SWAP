@@ -69,19 +69,25 @@ void		free_stack(t_stack *stack);
 int			init_ps(t_ps *p, int amount);
 void		free_ps(t_ps *p);
 
-/* operations.c */
+/* operations/swap.c */
 void		ft_swap(t_stack *stack);
-void		ft_rotate(t_stack *stack);
-void		ft_revrotate(t_stack *stack);
-void		ft_push(t_stack *src, t_stack *dst);
 void		ft_sa(t_ps *p);
 void		ft_sb(t_ps *p);
 void		ft_ss(t_ps *p);
+
+/* operations/push.c */
+void		ft_push(t_stack *src, t_stack *dst);
 void		ft_pa(t_ps *p);
 void		ft_pb(t_ps *p);
+
+/* operations/rotate.c */
+void		ft_rotate(t_stack *stack);
 void		ft_ra(t_ps *p);
 void		ft_rb(t_ps *p);
 void		ft_rr(t_ps *p);
+
+/* operations/reverse_rotate.c */
+void		ft_revrotate(t_stack *stack);
 void		ft_rra(t_ps *p);
 void		ft_rrb(t_ps *p);
 void		ft_rrr(t_ps *p);
@@ -103,22 +109,25 @@ int			find_max_position(t_stack *stack);
 
 /* algorithms/medium_sort.c */
 void		push_chunks(t_ps *p, int *sorted, int chunk_size);
-void		push_back_sorted(t_ps *p);
 void		medium_sort(t_ps *p);
+
+/* algorithms/medium_push_back.c */
+void		push_back_sorted(t_ps *p);
 
 /* algorithms/complex.c */
 void		radix_sort(t_ps *ps);
 
-/* disorder.c */
+/* algorithms/disorder.c */
 double		disorder(t_stack *a);
 
-/* options.c */
+/* flags/options.c */
 t_strategy	get_strategy(int argc, char **argv);
 int			is_bench(int argc, char **argv);
 int			is_option(char *arg);
 int			count_numbers(char **argv);
 
-/* benchmark.c */
+/* flags/benchmark.c */
 void		print_benchmark(t_ps *p, t_strategy strategy, double disorder);
 
 #endif
+
