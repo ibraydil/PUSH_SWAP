@@ -37,6 +37,7 @@ SRCS		= $(MAIN) \
 			  algorithms/simple_algorithm.c \
 			  algorithms/medium_utils.c \
 			  algorithms/medium_sort.c \
+			  algorithms/medium_push_back.c \
 			  algorithms/complex.c
 
 OBJS		= $(SRCS:.c=.o)
@@ -63,3 +64,4 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
