@@ -38,7 +38,8 @@ SRCS		= $(MAIN) \
 			  algorithms/medium_utils.c \
 			  algorithms/medium_sort.c \
 			  algorithms/medium_push_back.c \
-			  algorithms/complex.c
+			  algorithms/complex.c \
+			  algorithms/adaptive.c \
 
 OBJS		= $(SRCS:.c=.o)
 
