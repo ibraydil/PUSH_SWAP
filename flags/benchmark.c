@@ -25,17 +25,17 @@ static void	print_strategy(t_strategy strategy)
 		ft_putstr_fd("adaptive\n", 2);
 }
 
-static void	print_complexity(t_strategy strategy)
+static void	print_complexity(t_strategy strategy, double disorder)
 {
+	if (strategy == ADAPTIVE)
+		strategy = adaptive_regime(disorder);
 	ft_putstr_fd("complexity: ", 2);
 	if (strategy == SIMPLE)
 		ft_putstr_fd("O(n^2)\n", 2);
 	else if (strategy == MEDIUM)
 		ft_putstr_fd("O(n*sqrt(n))\n", 2);
-	else if (strategy == COMPLEX)
-		ft_putstr_fd("O(n log n)\n", 2);
 	else
-		ft_putstr_fd("adaptive\n", 2);
+		ft_putstr_fd("O(n log n)\n", 2);
 }
 
 static void	print_operations(t_ps *p)
@@ -72,7 +72,7 @@ void	print_benchmark(t_ps *p, t_strategy strategy, double disorder)
 	ft_putnbr_fd(percent % 100, 2);
 	ft_putstr_fd("%\n", 2);
 	print_strategy(strategy);
-	print_complexity(strategy);
+	print_complexity(strategy, disorder);
 	ft_putstr_fd("total operations: ", 2);
 	ft_putnbr_fd(p->total, 2);
 	ft_putstr_fd("\n", 2);
