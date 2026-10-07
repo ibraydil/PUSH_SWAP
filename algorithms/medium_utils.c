@@ -57,22 +57,27 @@ int	calculate_chunk_size(int size)
 	chunk = 1;
 	while (chunk * chunk < size)
 		chunk++;
-	return (chunk);
+	return (chunk * 5 / 2);
 }
 
 int	find_chunk_position(t_stack *stack, int *sorted, int start, int end)
 {
-	int	i;
+	int	top;
+	int	bottom;
 
-	i = 0;
-	while (i < stack->size)
-	{
-		if (stack->data[i] >= sorted[start]
-			&& stack->data[i] <= sorted[end])
-			return (i);
-		i++;
-	}
-	return (-1);
+	top = 0;
+	while (top < stack->size && (stack->data[top] < sorted[start]
+			|| stack->data[top] > sorted[end]))
+		top++;
+	if (top == stack->size)
+		return (-1);
+	bottom = stack->size - 1;
+	while (bottom > top && (stack->data[bottom] < sorted[start]
+			|| stack->data[bottom] > sorted[end]))
+		bottom--;
+	if (stack->size - bottom < top)
+		return (bottom);
+	return (top);
 }
 
 int	find_max_position(t_stack *stack)
