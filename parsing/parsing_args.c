@@ -57,7 +57,10 @@ int	add_arg_words(char **args, char *str, int index)
 
 	split = split_args(str, " \t\n\v\f\r");
 	if (split == NULL)
+	{
+		args[index] = NULL;
 		return (-1);
+	}
 	i = 0;
 	while (split[i] != NULL)
 	{
@@ -73,9 +76,10 @@ char	**prepare_args(int argc, char **argv)
 	int		i;
 	int		j;
 
-	if (argc < 2)
+	j = count_numbers(argv);
+	if (argc < 2 || j < 0)
 		return (NULL);
-	args = malloc(sizeof(char *) * (count_numbers(argv) + 1));
+	args = malloc(sizeof(char *) * (j + 1));
 	if (args == NULL)
 		return (NULL);
 	i = 1;
