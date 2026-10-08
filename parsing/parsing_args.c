@@ -56,8 +56,9 @@ int	add_arg_words(char **args, char *str, int index)
 	int		i;
 
 	split = split_args(str, " \t\n\v\f\r");
-	if (split == NULL)
+	if (split == NULL || split[0] == NULL)
 	{
+		free(split);
 		args[index] = NULL;
 		return (-1);
 	}
