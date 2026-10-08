@@ -64,7 +64,10 @@ void	medium_sort(t_ps *p)
 
 	sorted = sorted_copy(&p->a);
 	if (sorted == NULL)
+	{
+		selection_sort(p);
 		return ;
+	}
 	chunk_size = calculate_chunk_size(p->a.size);
 	push_chunks(p, sorted, chunk_size);
 	push_back_sorted(p);
