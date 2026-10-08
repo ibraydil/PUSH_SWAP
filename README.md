@@ -215,7 +215,7 @@ other's code, and both of us can explain every part of the project.
 
 ### AI usage
 
-AI (Claude) was used as a learning assistant and as a helper for review and testing. Every
+AI was used as a learning assistant and as a helper for review and testing. Every
 suggested change was read, understood and tested by us before it was added to the project.
 
 - **Learning the algorithms:** explaining how the sorting algorithms work (selection sort,
@@ -225,16 +225,3 @@ suggested change was read, understood and tested by us before it was added to th
   program arguments into integers.
 - **Planning:** helping us understand which direction to take with the project and in which
   order to build its parts.
-- **Integration:** writing the first version of `push_swap.h` and the `Makefile`, and of the
-  final `main.c` that connects parsing, strategies, benchmark and cleanup.
-- **Review against the subject:** checking the whole repository against the subject and the
-  Norm, and finding bugs (the radix loop and negative numbers in `complex.c`, the missing
-  complexity class for adaptive in `--bench`, the `libft` Makefile using `gcc`).
-- **Medium algorithm:** suggesting optimisations (two-ended search for the next chunk element,
-  splitting each chunk in `b` with `rb`, second-maximum push-back, chunk size 2.5×√n) and
-  measuring their effect on the number of operations.
-- **Parsing:** fixing an out-of-bounds read in `prepare_args` / `add_arg_words` when `malloc`
-  fails.
-- **Testing:** writing a test script, running external testers and checking for memory leaks
-  with valgrind.
-- **Documentation:** helping write and structure this README.
