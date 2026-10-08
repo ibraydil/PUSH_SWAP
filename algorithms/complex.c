@@ -44,10 +44,25 @@ static int	values_to_ranks(t_stack *a)
 	return (1);
 }
 
+static void	radix_pass(t_ps *ps, int bit, int size)
+{
+	int	j;
+
+	j = 0;
+	while (j++ < size)
+	{
+		if (((ps->a.data[0] >> bit) & 1) == 1)
+			ft_ra(ps);
+		else
+			ft_pb(ps);
+	}
+	while (ps->b.size > 0)
+		ft_pa(ps);
+}
+
 void	radix_sort(t_ps *ps)
 {
 	int	i;
-	int	j;
 	int	size;
 	int	max_bits;
 
@@ -60,18 +75,7 @@ void	radix_sort(t_ps *ps)
 	max_bits = get_max_bits(size);
 	i = -1;
 	while (++i < max_bits)
-	{
-		j = 0;
-		while (j++ < size)
-		{
-			if (((ps->a.data[0] >> i) & 1) == 1)
-				ft_ra(ps);
-			else
-				ft_pb(ps);
-		}
-		while (ps->b.size > 0)
-			ft_pa(ps);
-	}
+		radix_pass(ps, i, size);
 }
 
 /*1 % 2 is 1*/
