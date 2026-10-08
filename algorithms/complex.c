@@ -52,7 +52,10 @@ void	radix_sort(t_ps *ps)
 	int	max_bits;
 
 	if (!values_to_ranks(&ps->a))
+	{
+		selection_sort(ps);
 		return ;
+	}
 	size = ps->a.size;
 	max_bits = get_max_bits(size);
 	i = -1;
