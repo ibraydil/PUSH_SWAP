@@ -63,6 +63,8 @@ int	is_option(char *arg)
 		return (1);
 	if (is_same(arg, "--bench"))
 		return (1);
+	//if (is_same(arg, "--count-only"))
+		//return (1);
 	return (0);
 }
 
