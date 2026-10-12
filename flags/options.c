@@ -37,14 +37,14 @@ t_strategy	get_strategy(int argc, char **argv)
 	return (ADAPTIVE);
 }
 
-int	is_bench(int argc, char **argv)
+int	is_bench(int argc, char **argv) // int has_flag(int argc, char **argv, char *flag)
 {
 	int	i;
 
 	i = 1;
 	while (i < argc)
 	{
-		if (is_same(argv[i], "--bench"))
+		if (is_same(argv[i], "--bench")) //if(is_same(argv[i], flag))
 			return (1);
 		i++;
 	}
