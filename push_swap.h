@@ -32,6 +32,7 @@ typedef struct s_ps
 	int		counts[11];
 	int		total;
 	int		bench;
+	//int 	count_only;
 }	t_ps;
 
 typedef enum e_strategy
