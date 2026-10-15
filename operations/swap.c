@@ -55,3 +55,9 @@ void	ft_ss(t_ps *p)
 	p->total++;
 	ft_putendl_fd("ss", 1);
 }
+
+void print_op(t_ps *p, char *op)
+{
+	if (!p->count_only)
+		ft_putendl_fd(op, 1);
+}
