@@ -51,6 +51,20 @@ int	is_bench(int argc, char **argv) // int has_flag(int argc, char **argv, char 
 	return (0);
 }
 
+int	is_count_only(int argc, char **argv) // int has_flag(int argc, char **argv, char *flag)
+{
+	int	i;
+
+	i = 1;
+	while (i < argc)
+	{
+		if (is_same(argv[i], "--count-only")) //if(is_same(argv[i], flag))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int	is_option(char *arg)
 {
 	if (is_same(arg, "--simple"))
@@ -63,8 +77,8 @@ int	is_option(char *arg)
 		return (1);
 	if (is_same(arg, "--bench"))
 		return (1);
-	//if (is_same(arg, "--count-only"))
-		//return (1);
+	if (is_same(arg, "--count-only"))
+		return (1);
 	return (0);
 }
 
