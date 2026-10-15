@@ -79,9 +79,15 @@ int	main(int argc, char **argv)
 	}
 	strategy = get_strategy(argc, argv);
 	p.bench = is_bench(argc, argv);
+	p.count_only = is_count_only(argc, argv);
 	dis = disorder(&p.a);
 	if (!is_sorted(&p.a))
 		run_sort(&p, strategy, dis);
+	if (p.count_only)
+	{
+		ft_putnbr_fd(p.total, 1);
+		ft_putctr_fd("\n", 1);
+	}
 	print_benchmark(&p, strategy, dis);
 	free_ps(&p);
 	return (0);
