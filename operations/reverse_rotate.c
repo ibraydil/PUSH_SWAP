@@ -38,7 +38,7 @@ void	ft_rra(t_ps *p)
 	ft_revrotate(&p->a);
 	p->counts[8]++;
 	p->total++;
-	ft_putendl_fd("rra", 1);
+	print_op(p, "rra");
 }
 
 void	ft_rrb(t_ps *p)
@@ -48,7 +48,7 @@ void	ft_rrb(t_ps *p)
 	ft_revrotate(&p->b);
 	p->counts[9]++;
 	p->total++;
-	ft_putendl_fd("rrb", 1);
+	print_op(p, "rrb");
 }
 
 void	ft_rrr(t_ps *p)
@@ -61,5 +61,5 @@ void	ft_rrr(t_ps *p)
 		ft_revrotate(&p->b);
 	p->counts[10]++;
 	p->total++;
-	ft_putendl_fd("rrr", 1);
+	print_op(p, "rrr");
 }
