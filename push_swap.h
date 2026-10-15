@@ -32,7 +32,7 @@ typedef struct s_ps
 	int		counts[11];
 	int		total;
 	int		bench;
-	//int 	count_only;
+	int 	count_only;
 }	t_ps;
 
 typedef enum e_strategy
@@ -133,5 +133,7 @@ int			count_numbers(char **argv);
 
 /* flags/benchmark.c */
 void		print_benchmark(t_ps *p, t_strategy strategy, double disorder);
+void		print_op(t_ps *p, char *op);
+int			is_count_only(int argc, char **argv);
 
 #endif
