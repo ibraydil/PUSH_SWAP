@@ -44,7 +44,7 @@ void	ft_pa(t_ps *p)
 	ft_push(&p->b, &p->a);
 	p->counts[3]++;
 	p->total++;
-	ft_putendl_fd("pa", 1);
+	print_op(p, "pa");
 }
 
 void	ft_pb(t_ps *p)
@@ -54,5 +54,5 @@ void	ft_pb(t_ps *p)
 	ft_push(&p->a, &p->b);
 	p->counts[4]++;
 	p->total++;
-	ft_putendl_fd("pb", 1);
+	print_op(p, "pb");
 }
