@@ -30,7 +30,7 @@ void	ft_sa(t_ps *p)
 	ft_swap(&p->a);
 	p->counts[0]++;
 	p->total++;
-	ft_putendl_fd("sa", 1);
+	print_op(p, "sa");
 }
 
 void	ft_sb(t_ps *p)
@@ -40,7 +40,7 @@ void	ft_sb(t_ps *p)
 	ft_swap(&p->b);
 	p->counts[1]++;
 	p->total++;
-	ft_putendl_fd("sb", 1);
+	print_op(p, "sb");
 }
 
 void	ft_ss(t_ps *p)
@@ -53,7 +53,7 @@ void	ft_ss(t_ps *p)
 		ft_swap(&p->b);
 	p->counts[2]++;
 	p->total++;
-	ft_putendl_fd("ss", 1);
+	print_op(p, "ss");
 }
 
 void print_op(t_ps *p, char *op)
