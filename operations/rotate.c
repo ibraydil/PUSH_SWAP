@@ -38,7 +38,7 @@ void	ft_ra(t_ps *p)
 	ft_rotate(&p->a);
 	p->counts[5]++;
 	p->total++;
-	ft_putendl_fd("ra", 1);
+	print_op(p, "ra");
 }
 
 void	ft_rb(t_ps *p)
@@ -48,7 +48,7 @@ void	ft_rb(t_ps *p)
 	ft_rotate(&p->b);
 	p->counts[6]++;
 	p->total++;
-	ft_putendl_fd("rb", 1);
+	print_op(p, "rb");
 }
 
 void	ft_rr(t_ps *p)
@@ -61,5 +61,5 @@ void	ft_rr(t_ps *p)
 		ft_rotate(&p->b);
 	p->counts[7]++;
 	p->total++;
-	ft_putendl_fd("rr", 1);
+	print_op(p, "rr");
 }
